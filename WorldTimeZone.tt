@@ -1,0 +1,40 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Xml.Linq.dll" #>
+<#@ Assembly Name="System.Windows.Forms.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#   
+	var list = System.TimeZoneInfo.GetSystemTimeZones();
+
+#>
+
+namespace System
+{
+	/// <summary>
+	/// Specifies the world time zone.
+	/// </summary>
+    public enum WorldTimeZone
+    {
+	<#
+		for(int i = 0; i < list.Count(); i++){
+	#>
+	/// <summary>
+		/// <#= list[i].StandardName #>
+        /// </summary>
+        [WorldTimeZone("<#= list[i].Id #>")]
+        <#= list[i].Id.Replace(" ", "").Replace(".", "").Replace("(", "").Replace(")", "").Replace("+", "Positive").Replace("-1", "Negative").Replace("-0", "Negative").Replace("-", "")#> <#if (i != list.Count()-1){#>, <#}#>
+		
+	<#
+		}
+	#>
+	}
+}
+
