@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimerExtensions.cs" />
     <Compile Include="WorldTimeZone.cs">
       <DependentUpon>WorldTimeZone.tt</DependentUpon>
       <AutoGen>True</AutoGen>
